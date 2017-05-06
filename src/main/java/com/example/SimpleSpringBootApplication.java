@@ -1,13 +1,19 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.dao.TeamRepository;
+import com.example.entities.Player;
+import com.example.entities.Team;
 
 @SpringBootApplication
 public class SimpleSpringBootApplication {
@@ -21,21 +27,16 @@ public class SimpleSpringBootApplication {
 
 	@PostConstruct
 	public void init() {
-		List<Team> list = new ArrayList<>();
+		List<Team> teams = new ArrayList<>();
 
-		/**
-		 * initialize a couple in memory Team objects.
-		 */
-		Team team = new Team();
-		team.setLocation("Harlem");
-		team.setName("Globetrotters");
-		list.add(team);
+		Set<Player> players = new HashSet<>();
+		players.add(new Player("Big Easy", "Showman"));
+		players.add(new Player("Buckets", "Guard"));
+		players.add(new Player("Dizzy", "Guard"));
 
-		team = new Team();
-		team.setLocation("Washington");
-		team.setName("Generals");
-		list.add(team);
+		teams.add(new Team("Harlem", "Globetrotters", players));
+		teams.add(new Team("Washington", "Generals", null));
 
-		teamRepository.save(list);
+		teamRepository.save(teams);
 	}
 }

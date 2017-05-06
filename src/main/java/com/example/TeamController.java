@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import com.example.dao.TeamRepository;
+import com.example.entities.Team;
+
+// @RestController - Commented out to not interfere with Spring Data REST 
 public class TeamController {
 
 	@Autowired
